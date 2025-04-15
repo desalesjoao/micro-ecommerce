@@ -1,0 +1,26 @@
+//defina a versão da sintase do protocol Budders utilizando syntax = "proto3";
+
+//define um serviço chamado InvertoryService
+service InvetoryService {
+    //define um metodo remoto chamdo SearchAllProducts 
+    //eese metodo recebe uma mensagem do tipo empty e retorna uma mensagem do tipo ProductsResponse 
+    rpc SearchAllProducts(Empaty) returns (ProductsResponse) {}
+} 
+
+//mensagem vazia usada como entrada para o metodo SearchAllProducts 
+//util quando o metodo não precisa de parametros de entrada message Empaty{}
+
+//define o formato de um unico produto na resposta message ProductsResponse{
+    int32 id = 1; //ID do protudo (inteiro de 32 bits)
+    string name = 2; //Nome do produto
+    int32 quantify = 3; //Quantidade disponivel no estoque 
+    float price = 4 ; //preço do produto 
+    string photo = 5; //URL da imagem do protudo 
+    string author = 6; //Nome do autor ou fabricante (util para livros, por exemplo)
+}
+
+//define a estrutura da resposta do metodo SearchAllProducts 
+//contem uma lista de produtos (repeated = Array/lista)
+mensagem ProductsResponse {
+    repeated ProductsResponse products = 1; //lista de produtos retornados
+}
